@@ -1,0 +1,21 @@
+{
+  "C_Cpp.intelliSenseEngine": "default",
+  "idf.espIdfPath": "/Users/manjotkhangura/esp/v5.5.2/esp-idf",
+  "idf.pythonInstallPath": "/usr/local/bin/python3",
+  "idf.openOcdConfigs": [
+    "board/esp32s3-builtin.cfg"
+  ],
+  "idf.port": "/dev/tty.usbmodem101",
+  "idf.toolsPath": "/Users/manjotkhangura/.espressif",
+  "idf.customExtraVars": {
+    "IDF_TARGET": "esp32s3"
+  },
+  "clangd.path": "/Users/manjotkhangura/.espressif/tools/esp-clang/esp-19.1.2_20250312/esp-clang/bin/clangd",
+  "clangd.arguments": [
+    "--background-index",
+    "--query-driver=**",
+    "--compile-commands-dir=/Users/manjotkhangura/Projects/ESP_IDF/ESPIDF-example/build"
+  ],
+  "idf.flashType": "JTAG",
+  "idf.monitorPort": "/dev/tty.usbmodem101"
+}

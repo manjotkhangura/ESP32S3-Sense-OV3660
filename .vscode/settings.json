@@ -16,6 +16,6 @@
     "--query-driver=**",
     "--compile-commands-dir=/Users/manjotkhangura/Projects/ESP_IDF/ESPIDF-example/build"
   ],
-  "idf.flashType": "JTAG",
+  "idf.flashType": "UART",
   "idf.monitorPort": "/dev/tty.usbmodem101"
 }

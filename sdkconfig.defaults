@@ -6,9 +6,10 @@
 # Only put application-specific configs here
 # Board hardware configs are in sdkconfig.boardß
 
+
 # WiFi Configuration - CHANGE THESE!
 CONFIG_ESP_WIFI_SSID="Skynetwork"
-CONFIG_ESP_WIFI_PASSWORD="Singh408fam"
+CONFIG_ESP_WIFI_PASSWORD="408singhfam"
 
 # Camera
 CONFIG_CAMERA_TASK_STACK_SIZE=4096

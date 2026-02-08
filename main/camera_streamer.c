@@ -22,15 +22,6 @@
 static const char *TAG = "XIAO_CAM";
 
 
-//WiFi Configuration - Set these in sdkconfig or here
-#ifndef CONFIG_ESP_WIFI_SSID
-#define CONFIG_ESP_WIFI_SSID  "Skynetwork"
-#endif
-
-#ifndef CONFIG_ESP_WIFI_PASSWORD
-#define CONFIG_ESP_WIFI_PASSWORD "408singhfam"
-#endif
-
 // WiFi credentials from sdkconfig
 #define ESP_WIFI_SSID      CONFIG_ESP_WIFI_SSID
 #define ESP_WIFI_PASS      CONFIG_ESP_WIFI_PASSWORD
@@ -70,8 +61,8 @@ static camera_config_t camera_config = {
     
     .pixel_format = PIXFORMAT_JPEG,     // Try JPEG first
     //WORKING .frame_size   = FRAMESIZE_QVGA,     // 800x600
-    .frame_size   = FRAMESIZE_SVGA,     // 800x600
-    .jpeg_quality = 20,
+    .frame_size   = FRAMESIZE_HD,     // 800x600
+    .jpeg_quality = 5,
     .fb_count     = 2,
     .fb_location  = CAMERA_FB_IN_PSRAM,
     .grab_mode    = CAMERA_GRAB_WHEN_EMPTY,
@@ -164,10 +155,10 @@ static esp_err_t init_camera(void)
     
     sensor_t *s = esp_camera_sensor_get();
     // Initial settings
-    s->set_brightness(s, 0);
+    s->set_brightness(s, 3);
     s->set_contrast(s, 0);
     s->set_saturation(s, 0);
-    s->set_sharpness(s, 0);
+    s->set_sharpness(s, 3);
     s->set_whitebal(s, 1);
     s->set_awb_gain(s, 1);
     s->set_wb_mode(s, 0);
@@ -186,6 +177,26 @@ static esp_err_t init_camera(void)
     s->set_vflip(s, 0);
     s->set_dcw(s, 1);
     s->set_colorbar(s, 0);
+
+    // CRITICAL: Better exposure for dark scenes
+    s->set_exposure_ctrl(s, 1);     // Enable auto-exposure
+    s->set_aec2(s, 1);              // Enable advanced exposure control
+    s->set_ae_level(s, 2);          // Increase exposure level (range: -2 to 2)
+    s->set_aec_value(s, 600);       // Longer exposure time (default: 300)
+    
+    // Better gain for low light
+    s->set_gain_ctrl(s, 1);         // Enable auto gain
+    s->set_agc_gain(s, 15);         // Increase gain (range: 0-30)
+    s->set_gainceiling(s, GAINCEILING_128X);  // Higher gain ceiling
+    
+    // White balance for better colors
+    s->set_whitebal(s, 1);          // Enable auto white balance
+    s->set_awb_gain(s, 1);          // Enable AWB gain
+    
+    // Other improvements
+    s->set_lenc(s, 1);              // Enable lens correction
+    s->set_raw_gma(s, 1);           // Enable gamma correction
+    s->set_dcw(s, 1);               // Enable downsize
     
     ESP_LOGI(TAG, "✓ Camera initialized");
     return ESP_OK;
@@ -241,7 +252,7 @@ static esp_err_t stream_handler(httpd_req_t *req)
             break;
         }
         
-        vTaskDelay(pdMS_TO_TICKS(90));
+        vTaskDelay(pdMS_TO_TICKS(30));
     }
 
     ESP_LOGI(TAG, "Stream ended");

@@ -34,7 +34,7 @@ static camera_config_t camera_config = {
     // Image settings - OV3660 specific
     .pixel_format = PIXFORMAT_JPEG,
     .frame_size   = FRAMESIZE_QQVGA,    // Start with QQVGA (160x120) for testing
-    .jpeg_quality = 15,                 // 0-63 lower = higher quality
+    .jpeg_quality = 5,                 // 0-63 lower = higher quality
     .fb_count     = 1,                  // 2 frame buffers
     .fb_location  = CAMERA_FB_IN_PSRAM,
     .grab_mode    = CAMERA_GRAB_LATEST,

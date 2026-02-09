@@ -2,6 +2,8 @@
 
 WiFi camera streaming for the XIAO ESP32S3 Sense board with OV3660 camera using ESP-IDF. Built for edge AI applications requiring stable video streaming.
 
+![IMG_6115](https://github.com/user-attachments/assets/1e7ab60b-1c48-4a31-9278-57405b0802f4)
+
 ## Features
 
 - 📹 Live MJPEG streaming over WiFi
@@ -17,6 +19,7 @@ WiFi camera streaming for the XIAO ESP32S3 Sense board with OV3660 camera using 
 - OV3660 camera module (included with board)
 - WiFi antenna (recommended)
 - USB-C cable
+
 
 ## Quick Start
 
